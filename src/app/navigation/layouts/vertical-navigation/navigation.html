@@ -1,0 +1,16 @@
+<md-toolbar class="navigation-header md-whiteframe-1dp" layout="row" layout-align="space-between center">
+    <div class="logo" layout="row" layout-align="start center">
+        <span >
+                <a ng-click="vm.redirecttoback()" >
+             <img class="logo-image" style="width: 39px" src="{{appLogo}}" ng-click="vm.redirecttoback()"></img></a>
+        </span>
+        <span class="logo-text">{{appName}}</span>
+    </div>
+
+    <md-icon class="fold-toggle s18" md-font-icon="icon-backburger" hide show-gt-sm
+             ng-click="vm.toggleMsNavigationFolded()"></md-icon>
+</md-toolbar>
+
+<ms-navigation class="scrollable" folded="vm.folded" ms-scroll="vm.msScrollOptions"></ms-navigation>
+
+

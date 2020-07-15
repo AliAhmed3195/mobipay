@@ -1,0 +1,235 @@
+<!doctype html>
+<html ng-app="fuse">
+    <head>
+        <base href="/">
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="icon" type="image/png" href="https://apps.clique.center/apps/common/assets/images/favicon.png"> 
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <title>MobiPay</title>
+        <link id="favIcon" rel="icon" type="image/ico" href="">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="../bower_components/datatables/media/css/jquery.dataTables.css" />
+        <link rel="stylesheet" href="../bower_components/perfect-scrollbar/css/perfect-scrollbar.css" />
+        <link rel="stylesheet" href="../bower_components/angular-material-data-table/dist/md-data-table.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css({.tmp/serve,src}) styles/app.css -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="app/index.css">
+        <!-- endinject -->
+        <!-- endbuild -->
+
+        <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic'
+              rel='stylesheet' type='text/css'>
+    </head>
+
+    <!--[if lt IE 10]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
+          class="{{state.current.bodyClass || ''}}">
+
+        <!-- SPLASH SCREEN -->
+        <ms-splash-screen id="splash-screen">
+            <div class="center">
+                <div class="logo">
+                  <img src="https://apps.clique.center/apps/common/assets/images/clique_loading.gif">
+                  <div layout="row" layout-align="center center" style=" width: 600px; ">
+                        <md-progress-linear md-mode="indeterminate" ng-disabled="$root.loadingProgress"  class="md-hue-2" >
+                        </md-progress-linear>
+                        </div>
+
+
+                </div>
+               
+                
+                <!-- Material Design Spinner -->
+                <!-- <div class="spinner-wrapper">
+                    <div class="spinner">
+                        <div class="inner">
+                            <div class="gap"></div>
+                            <div class="left">
+                                    <img src="assets/images/clique_loading.gif"  />
+                            </div>
+                            <div class="right">
+                                    <!-- <img src="assets/images/clique_loading.gif"  />  -->
+                            <!-- </div>
+                        </div>
+                    </div>
+                </div> --> 
+                <!-- / Material Design Spinner -->
+            </div>
+        </ms-splash-screen>
+        <!-- / SPLASH SCREEN -->
+
+        <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
+
+
+
+ 
+
+        <ms-theme-options></ms-theme-options>
+
+        <!-- build:js(src) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../bower_components/angular-animate/angular-animate.js"></script>
+        <script src="../bower_components/angular-aria/angular-aria.js"></script>
+        <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="../bower_components/angular-messages/angular-messages.js"></script>
+        <script src="../bower_components/angular-material/angular-material.js"></script>
+        <script src="../bower_components/angular-resource/angular-resource.js"></script>
+        <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="../bower_components/angular-translate/angular-translate.js"></script>
+        <script src="../bower_components/datatables/media/js/jquery.dataTables.js"></script>
+        <script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+        <script src="../bower_components/jquery-ui/jquery-ui.js"></script>
+        <script src="../bower_components/angular-ui-sortable/sortable.js"></script>
+        <script src="../bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+        <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="../bower_components/mobile-detect/mobile-detect.js"></script>
+        <script src="../bower_components/moment/moment.js"></script>
+        <script src="../bower_components/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+        <script src="../bower_components/angular-material-data-table/dist/md-data-table.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+        <!-- inject:js -->
+        <script src="app/quick-panel/quick-panel.module.js"></script>
+        <script src="app/quick-panel/tabs/chat/chat-tab.controller.js"></script>
+        <script src="app/main/setting/setting.module.js"></script>
+        <script src="app/main/setting/setting update/setting.model.js"></script>
+        <script src="app/main/setting/setting update/setting.controller.js"></script>
+        <script src="app/main/dashboards/server/dashboard-server.module.js"></script>
+        <script src="app/main/dashboards/server/dashboard-server.controller.js"></script>
+        <script src="app/main/dashboards/project/dashboard-project.module.js"></script>
+        <script src="app/main/dashboards/project/dashboard-project.controller.js"></script>
+        <script src="app/main/dashboards/analytics/dashboard-analytics.module.js"></script>
+        <script src="app/main/dashboards/analytics/dashboard-analytics.controller.js"></script>
+        <script src="app/main/chat/chat.module.js"></script>
+        <script src="app/main/chat/services/chats.service.js"></script>
+        <script src="app/core/core.module.js"></script>
+        <script src="app/core/directives/ms-widget/ms-widget.directive.js"></script>
+        <script src="app/core/directives/ms-timeline/ms-timeline.js"></script>
+        <script src="app/core/directives/ms-stepper/ms-stepper.directive.js"></script>
+        <script src="app/core/directives/ms-splash-screen/ms-splash-screen.directive.js"></script>
+        <script src="app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>
+        <script src="app/core/directives/ms-shortcuts/ms-shortcuts.directive.js"></script>
+        <script src="app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>
+        <script src="app/core/directives/ms-scroll/ms-scroll.directive.js"></script>
+        <script src="app/core/directives/ms-responsive-table/ms-responsive-table.directive.js"></script>
+        <script src="app/core/directives/ms-random-class/ms-random-class.directive.js"></script>
+        <script src="app/core/directives/ms-navigation/ms-navigation.directive.js"></script>
+        <script src="app/core/directives/ms-nav/ms-nav.directive.js"></script>
+        <script src="app/core/directives/ms-material-color-picker/ms-material-color-picker.directive.js"></script>
+        <script src="app/core/directives/ms-masonry/ms-masonry.directive.js"></script>
+        <script src="app/core/directives/ms-info-bar/ms-info-bar.directive.js"></script>
+        <script src="app/core/directives/ms-form-wizard/ms-form-wizard.directive.js"></script>
+        <script src="app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
+        <script src="app/core/directives/ms-card/ms-card.directive.js"></script>
+        <script src="app/main/transaction/transaction.module.js"></script>
+        <script src="app/main/transaction/transaction.model.js"></script>
+        <script src="app/main/transaction/transaction.controller.js"></script>
+        <script src="app/index.module.js"></script>
+        <script src="app/main/invoice/invoice.model.js"></script>
+        <script src="app/main/invoice/invoice.module.js"></script>
+        <script src="app/main/invoice/invoice.controller.js"></script>
+        <script src="app/main/chat/chat.controller.js"></script>
+        <script src="app/core/theming/fuse-theming.service.js"></script>
+        <script src="app/core/theming/fuse-theming.config.js"></script>
+        <script src="app/core/theming/fuse-themes.constant.js"></script>
+        <script src="app/core/theming/fuse-palettes.constant.js"></script>
+        <script src="app/core/theming/fuse-generator.service.js"></script>
+        <script src="app/core/theme-options/theme-options.directive.js"></script>
+        <script src="app/core/services/ms-utils.service.js"></script>
+        <script src="app/core/services/ms-api.provider.js"></script>
+        <script src="app/core/services/api-resolver.service.js"></script>
+        <script src="app/core/filters/tag.filter.js"></script>
+        <script src="app/core/filters/filterByPropIds.filter.js"></script>
+        <script src="app/core/filters/filterByIds.filter.js"></script>
+        <script src="app/core/filters/basic.filter.js"></script>
+        <script src="app/core/filters/altDate.filter.js"></script>
+        <script src="app/core/directives/highlight.directive.js"></script>
+        <script src="app/core/directives/countupto.directive.js"></script>
+        <script src="app/core/config/fuse-config.provider.js"></script>
+        <script src="app/helper/payment/vantiv_triposipp350.js"></script>
+        <script src="app/quick-panel/quick-panel.controller.js"></script>
+        <script src="app/toolbar/toolbar.module.js"></script>
+        <script src="app/toolbar/toolbar.controller.js"></script>
+        <script src="app/navigation/navigation.module.js"></script>
+        <script src="app/navigation/navigation.controller.js"></script>
+        <script src="app/main/main.controller.js"></script>
+        <script src="app/core/core.run.js"></script>
+        <script src="app/core/core.config.js"></script>
+        <script src="app/helper/xml2json.js"></script>
+        <script src="app/helper/printer.js"></script>
+        <script src="app/index.run.js"></script>
+        <script src="app/index.route.js"></script>
+        <script src="app/index.controller.js"></script>
+        <script src="app/index.constants.js"></script>
+        <script src="app/index.config.js"></script>
+        <script src="app/index.api.js"></script>
+        <script src="app/main/dashboards/dashboards.module.js"></script>
+        <!-- endinject -->
+
+        <!-- inject:partials -->
+        <!-- angular templates will be automatically converted in js and inserted here -->
+        <!-- endinject -->
+        <!-- endbuild -->
+
+
+
+
+       <!--  https://apps.clique.center/apps/common/assets/js/clique.js -->
+
+
+
+        <script type="text/javascript" src="assets/clique.js"></script>
+
+
+
+       
+
+        <!-- <script type="text/javascript" src="http://instantinvoice.local:8000/apps/common/assets/js/clique.js"></script> -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+      
+        <script src="bower_components/pdf.js-viewer/pdf.js"></script>
+        <link rel="stylesheet" href="bower_components/pdf.js-viewer/viewer.css">
+      
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-pdfjs-viewer/dist/angular-pdfjs-viewer.js"></script>
+        <script src="bower_components/ng-csv/build/ng-csv.js"></script>
+        <script src="bower_components/angular-avatar/dist/angular-avatar.js"></script>
+
+
+        <script>
+            localStorage.setItem("app_id","18");
+         localStorage.setItem("env","ip");
+          // localStorage.setItem("ip","https://staging.clique.center/");
+          // https://apps.clique.center/apps/account/login
+          // localStorage.setItem("ip","http://192.168.0.105:8000/");  // for Dev /
+         //  localStorage.setItem("token","9c4f7039d8fc5117e92905642fa7f144ac66363f"); // dev token
+    //      localStorage.setItem("ip","https://staging.clique.center/");  // for Prdouction 
+     //    localStorage.setItem("token","a1f31c8116b92631c5662fb4f89a6319735871c5"); // Production token
+         
+       localStorage.setItem("ip","https://staging.clique.center/");  // for Prdouction 
+        localStorage.setItem("token","a1f31c8116b92631c5662fb4f89a6319735871c5"); // Production token
+         //  document.cookie = "LOCALAUTH=973af70cb2c43b587da457954f68957a45e8af67";
+          //  document.cookie = "USERINFO=%7B%22name%22%3A%20%22Mark%20Smith%20%22%2C%20%22is_pwdchange%22%3A%20true%2C%20%22is_admin%22%3A%20true%2C%20%22id%22%3A%202%7D";
+         
+         </script> 
+         
+
+
+    </body>
+</html>

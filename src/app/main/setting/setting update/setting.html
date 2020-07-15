@@ -1,0 +1,354 @@
+<style>
+
+    .gridListdemoBasicUsage md-grid-list {
+      margin: 8px;
+    }
+  
+    .gridListdemoBasicUsage .gray {
+      background: #b9f6ca;
+    }
+  
+    .gridListdemoBasicUsage .green {
+      background: #b9f6ca;
+    }
+  
+    md-chips.status .md-chips {
+      border: 0 solid !important;
+      box-shadow: none !important;
+      text-transform: capitalize;
+      height: 20px !important;
+    }
+  
+    .md-chips md-chip {
+      height: 20px !important;
+      line-height: 20px !important;
+      font-size: 11px;
+      font-weight: 500;
+  
+    }
+  
+    table.simple tr td {
+      padding: 2px !important;
+    }
+  
+    md-progress-linear.md-default-theme.md-hue-2.md-accent ._md-bar,
+    md-progress-linear.md-hue-2.md-accent ._md-bar {
+      height: 3px !important;
+    }
+  
+    md-progress-linear.md-default-theme.md-hue-2.md-accent ._md-container,
+    md-progress-linear.md-hue-2.md-accent ._md-container {
+      height: 3px !important;
+    }
+  
+    md-chip.status {
+      font-size: 11px;
+      color: #fff !important;
+      text-transform: capitalize;
+      line-height: 20px !important;
+      height: 20px !important;
+      font-weight: 500;
+    }
+  
+    md-chip.status.approved,
+    md-chip.status.Approved {
+      background-color: #00CC66
+    }
+  
+    md-chip.status.declined,
+    md-chip.status.Declined {
+      background-color: #FA7044
+    }
+  
+     th {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #eee !important;
+      padding: 16px 8px 16px 24px !important;
+      font-size: 16px !important;
+      color: rgba(0, 0, 0, 0.54);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      white-space: nowrap;
+      min-width: 120px;
+      font-weight: 100 !important;
+    }
+  table {
+    width: 100%;
+    border-spacing: 0 !important;
+    overflow: hidden;
+}
+    .hidden {
+      display: none;
+    }
+  
+    table tbody {
+      overflow-x: scroll;
+    }
+  
+    .page-layout.simple.fullwidth > .content, .page-layout.simple.inner-sidenav > .content {
+      padding: 24px !important;
+  }
+
+
+
+  </style>
+  
+  
+  <md-sidenav class="md-sidenav-left" md-component-id="left"
+                   md-whiteframe="4">
+  
+        <md-toolbar class="" style="background-color:rgb(3,155,229); color:#FFFFFF; text-transform:capitalize;">
+          <h1 class="md-toolbar-tools">Search</h1>
+        </md-toolbar>
+        
+  
+        <md-content layout-margin="">
+       
+          <div>
+         From   <md-datepicker ng-model="from_date" md-placeholder="From Date"></md-datepicker>
+          </div>
+          <div>
+         To   &nbsp; &nbsp;  <md-datepicker style="padding-left: 3px;" ng-model="to_date" md-placeholder="To Date"></md-datepicker>
+          </div>
+  
+          <!-- <md-input-container class="md-block">
+            <label>Customer</label>
+            <input ng-model="searching.customer">
+          </md-input-container> -->
+  
+          <md-input-container class="md-block">
+            <label>Status</label>
+            <md-select placeholder="Status" ng-model="vm.query.status">
+                <md-option value="approved">Approved</md-option>
+                <md-option value="declined">Declined</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block"></md-input-container>
+          <md-input-container class="md-block">
+            <label>Customer</label>
+            <input  name="customer name" ng-model="vm.query.customer">
+          </md-input-container>
+        
+    
+    
+          <!-- <md-input-container >
+            <label>Status</label>
+            <md-select name="type" ng-model="searching.status">
+              <md-option value="approved">Approved</md-option>
+              <md-option value="declined">Declined</md-option>
+            </md-select>
+          </md-input-container> -->
+  
+  
+          
+  <br>
+          <md-button class="md-raised md-primary"
+            style="background-color:rgb(3,155,229); color:#FFFFFF; text-transform:capitalize;"
+            ng-click="vm.searchTransactions(); ">Search</md-button>
+          <md-button class="md-raised md-primary"
+            style="background-color:rgb(3,155,229); color:#FFFFFF; text-transform:capitalize;"
+            ng-click="searching.amount_from = null; searching.amount_to = null; searching.customer = null; clear() ">Clear</md-button>
+  
+            <!-- <md-button ng-click="toggleLeft()" class="md-accent">
+              Close this Sidenav
+            </md-button> -->
+        </md-content>
+  
+      </md-sidenav>
+  
+  
+  <!-- <div layout="row" layout-align="center center" style="min-height:600px;" class="dashboard-progress"
+    ng-hide="contentPage">
+    <div flex="30">
+      <md-progress-linear md-mode="indeterminate" class="md-hue-2"></md-progress-linear>
+    </div>
+  </div> -->
+  
+  <div id="simple-table" class="page-layout simple fullwidth doc-page element-doc-page" >
+  
+    <!-- CONTENT -->
+    <div class="content">
+      <div layout="column" layout-gt-sm="row" layout-align="center center">
+        
+    
+  
+  
+      </div>
+      <md-button ng-click="toggleLeft()" class="md-fab md-mini"
+      style="background-color:rgb(3,155,229); color:#FFFFFF; text-transform:capitalize;">
+        <md-icon md-font-icon="fa fa-search" style="font-size:14px;" class="ng-scope md-cyan-theme md-font material-icons fa fa-search" aria-hidden="true"></md-icon>
+        <md-tooltip>Search</md-tooltip>  
+      </md-button>
+  
+      
+      
+      <md-button aria-label="export"  class="md-fab md-mini"  style="background-color:rgb(3,155,229); color:#FFFFFF; text-transform:capitalize; cursor: pointer;"  ng-csv="vm.InvoiceData"
+      csv-header="['TRANS. ID', 'DATE', 'AMOUNT','REMAINING','TRANS TYPE','STATUS','CUSTOMER','TYPE','Invoice NO #.']"
+      csv-column-order="['ref_id','trans_date','trans_amount','remain_amount','trans_type','status','customer_name','process_type','invoice_no']"
+      filename="Payments_{{vm.fileName}}.csv"
+      export-csv-ignore="ignore"
+      ng-hide="vm.isTransactionLoaded"
+      >
+      <md-icon md-font-icon="fa fa-file" style="font-size:14px;"></md-icon>
+      <md-tooltip>Export</md-tooltip>  
+      </md-button>
+      
+  
+      <div layout="row" layout-xs="column" ng-show="enableAdvanceSearch" class="md-padding" layout-margin>
+  
+        <md-input-container flex="25" flex-xs="100" class="md-block">
+          <label>Customer</label>
+          <input ng-model="searching.customer">
+        </md-input-container>
+  
+        <md-input-container flex="25" flex-xs="100">
+          <label style="width: 100% !important;">Amounts from</label>
+          <input ng-model="searching.amount_from" type="number">
+          <md-icon md-font-icon="fa fa-usd" style="font-size:12px;"></md-icon>
+        </md-input-container>
+  
+        <md-input-container flex="25" flex-xs="100">
+          <label style="width: 100% !important;">Amount to</label>
+          <input ng-model="searching.amount_to" type="number">
+          <md-icon md-font-icon="fa fa-usd" style="font-size:12px;"></md-icon>
+        </md-input-container>
+  
+  
+  
+        <md-input-container flex="25" flex-xs="100">
+          <label>Status</label>
+          <md-select name="type" ng-model="searching.status">
+            <!-- <md-option value="all">All</md-option> -->
+            <md-option value="approved">Approved</md-option>
+            <md-option value="declined">Declined</md-option>
+          </md-select>
+        </md-input-container>
+  
+  
+  
+  
+      </div>
+      <div class="simple-table-container md-whiteframe-4dp">
+        <!-- <md-progress-linear md-mode="indeterminate" ng-show="showProgressbar" style="margin-top: -5px;">
+        </md-progress-linear> -->
+  
+        <table md-table class="md-data-table"   ms-responsive-table>
+          <thead md-head md-order="vm.query.order" md-on-reorder="vm.InvoiceData"> 
+            
+               <tr>
+                <th md-column md-order-by="ref_id" decend-first>TRANS. ID</th>
+                <th md-column md-order-by="trans_timestamp"  class="col5" style="width:90px;">DATE</th>
+                <th md-column md-order-by="trans_amount" >AMOUNT</th>
+                <th md-column md-order-by="remain_amount">REMAINING</th>
+                <th md-column md-order-by="trans_type" class="col4">TRANS TYPE</th>
+                <th md-column md-order-by="status" class="col3">STATUS</th>
+                <th md-column md-order-by="customer_name" class="col2">CUSTOMER</th>
+                <th md-column md-order-by="process_type" class="col1">TYPE</th>
+                <th md-column md-order-by="invoice_no" class="col1">NO #.</th>
+                <th md-column align="center">ACTION</th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row md-on-select="vm.toolBarProcess()" md-select="invoice" md-select-id="invoice.trans_id"
+              md-auto-select ng-disabled="invoice.status == 'declined'"
+             
+              style="cursor: pointer;"
+              >
+  
+  
+              <td md-cell class="col1">ALI</td>
+              <td md-cell class="col1">ALI</td>
+              <td md-cell class="col5">ALI</td>
+              <td md-cell style="text-align:right">ALI</td>
+              <td md-cell class="col4">ALI</td>
+  
+              <td md-cell class="col3">
+                    ALI
+                <md-chips class="status">
+                  <md-chip class="status {{::invoice.status}}">ALI</md-chip>
+                </md-chips>
+              </td>
+              <td md-cell class="col2">ALI</td>
+
+              <td md-cell class="col2">ALI</td>
+              <td md-cell class="col2">ALI</td>
+              <td md-cell>
+                    <div layout="row" layout-align="center center">
+                        <div palette-background="grey:300">
+
+                              <md-button ng-click="emailReceipt()" style="margin:0px !important;height:25px; color:rgba(0, 0, 0, 0.54) !important;font-size:12px;  min-width:18px; "
+                              permission
+                              permission-only="'transaction-emailreceipt'">
+                                <md-icon md-font-icon="fa fa-envelope-o" md-menu-align-target style="font-size:12px; margin-bottom:2px;"></md-icon >
+                                Receipt
+                              </md-button>
+                        </div>
+                        <div style="border:0px solid;" palette-background="grey:300">
+                            <md-menu md-offset="0 60">
+                                <md-button
+                                ng-click="$mdOpenMenu()"
+                                class=""
+                                style="margin:0px !important; min-width:13px; height:25px; color:rgba(0, 0, 0, 0.54) !important;">
+                                       <md-icon md-font-icon="fa fa-caret-down"></md-icon>
+                                </md-button>
+                                <md-menu-content width="3">
+                                    <md-menu-item
+                                       permission
+                                       permission-only="'transaction-print'"
+                                       >
+                                    <md-button
+                                       class=""
+                                       ng-click="printReceipt(item)"
+                                       >
+                                        <md-icon md-font-icon="fa fa-print"  md-menu-align-target></md-icon>
+                                        Print
+                                      </md-button>
+
+                                    </md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item
+                                       permission
+                                       permission-only="'transaction-void'"
+
+                                     >
+                                      <md-button ng-disabled="vm.disabledVoidOption(item)" ng-click="callVoid(item,item.trans_type)">
+                                        <md-icon md-font-icon="fa fa-ban" md-menu-align-target></md-icon>
+                                        Void
+                                      </md-button>
+                                    </md-menu-item>
+                                    <md-menu-divider ></md-menu-divider>
+                                    <md-menu-item
+                                       permission
+                                       permission-only="'transaction-refund'"
+
+
+                                      >
+                                      <md-button ng-disabled="item.remain_amount <=0" ng-click="callRefund(item,item.trans_type)" >
+                                        <md-icon md-font-icon="fa fa-reply-all"></md-icon>
+                                        Refund
+                                      </md-button>
+                                    </md-menu-item>
+                                  </md-menu-content>
+                              </md-menu>
+                        </div>
+                    </div>
+                </td>
+  
+  
+  
+            </tr>
+            <tr md-row ng-show="vm.InvoiceData.length == 0">
+              <td md-cell colspan="10" style="text-align:center !important;text-transform:none;">There is no data to
+                display</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <md-table-pagination md-limit="Ali" md-page="Ali" md-total="aLI"
+          md-page-select></md-table-pagination>
+  
+      </div>
+  
+    </div>
+    <!-- / CONTENT -->
+  </div>
+  

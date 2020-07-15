@@ -1,0 +1,201 @@
+
+<head>
+    <script data-require="angularjs@1.5.5" data-semver="1.5.5" src="https://code.angularjs.org/1.5.5/angular.js"></script>
+    <script src="https://npmcdn.com/angular-avatar/dist/angular-avatar.min.js"></script>
+</head>
+<style>
+    #invoicelistitem:hover{
+background-color: #EEEEEE;
+    }
+.md-sidenav-right {
+    left: 100%;
+    top: 0;
+    transform: translate(-100%, 0);
+    min-width: 662px;
+}
+#chat-app .right-sidenav {
+    overflow: hidden;
+    width: 0px;
+}
+
+
+    #chat-app .right-sidenav .contact-view md-toolbar {
+    min-height: 90px;
+    /* min-width: 500px !important; */
+}
+#md-toolbar-tools-bottom {
+background-color: #FAFAFA;
+}
+#md-toolbar-tools-top {
+    height: 80px;
+}
+
+.md-toolbar-tools {
+    font-size: 20px;
+    letter-spacing: 0.005em;
+    box-sizing: border-box;
+    font-weight: 400;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: 100%;
+    height: 64px;
+    max-height: 64px;
+    padding: 0 16px;
+    margin: 0;
+    background-color: white;
+}
+.heading{
+background-color: white;
+color: black;
+font-size: 15px;
+}
+table.md-table:not(.md-row-select) td.md-cell:first-child, table.md-table:not(.md-row-select) th.md-column:first-child {
+    padding: 12px 45px;
+}
+#chat-app .center .content-card .sidenav md-toolbar {
+    border-bottom: 0px solid rgba(0, 0, 0, 0.08);
+}
+</style>
+<!-- CHATS TOOLBAR -->
+<md-toolbar class="md-tall">
+        <div class = "headin1" style="background-color: white; color: black; font-size: 18px;padding-left: 16px; padding-top: 7px;font-weight: 600;" translate=""> {{vm.customer_name}}
+            </div>
+<!-- TOOLBAR TOP -->
+<div id ="md-toolbar-tools-top" class="md-toolbar-tools md-toolbar-tools-top">
+       
+        <div class = "heading" translate=""> Please Select an Invoice 
+            </div>
+          
+            <div flex="33">
+                    <!-- <md-button class="" ng-click="cancelInvoice()"> -->
+                        <md-icon md-font-icon="fa fa-times " ng-click="vm.toggleSidenav('right-sidenav');"
+                         style="font-size:22px; color: black; margin-left: 425px; margin-top: -30px;"></md-icon>
+                    <!-- </md-button> -->
+                </div>
+              
+
+</div>
+
+<div id= "md-toolbar-tools-bottom" class="md-toolbar-tools md-toolbar-tools-bottom">
+  
+    <!-- SEARCH -->
+    <div class="search-wrapper md-whiteframe-1dp" style="margin-left: 0px;" layout="row" layout-align="start center" flex>
+
+        <div class="search" flex layout="row" layout-align="start center">
+
+            <md-icon md-font-icon="icon-magnify" class="icon s18">
+            </md-icon>
+            <!-- ng-model="vm.chatSearch" -->
+            <input flex  ng-model="vm.InvoiceSearch" type="text" placeholder="Search and Select Invoice" translate=""
+                  >
+
+        </div>
+    </div>
+    <!-- / SEARCH -->
+
+</div>
+<!-- / TOOLBAR BOTTOM -->
+
+</md-toolbar>
+<!-- / CHATS TOOLBAR -->
+
+<!-- CHATS CONTENT -->
+<md-content  flex ms-scroll>
+<!-- <md-content class="messages"  > -->
+    <!-- <input type="text" id="myInput"  placeholder="Search or start new chat" ng-model="searchText" title="Type in a name"> -->
+<!-- CHATS LIST-->
+<md-list class="inbox-list">
+    <md-divider></md-divider>
+ 
+
+
+
+
+    <table md-table class="md-data-table" ng-model="transSelection"   ms-responsive-table>
+            <thead md-head md-order="vm.query.order" md-on-reorder="vm.getallcustomerinvoice"> 
+              
+                 <tr style = "background-color: #EEEEEE">
+                   
+               
+                  <th  md-column md-order-by="Id"  class="col1" style="width:90px;">Invoice #</th>
+                  <th  md-column  >Customer Name</th>
+                  <th  md-column md-order-by="Balance" class="col3" >Balance</th>
+                  <th  md-column md-order-by="DueDate" class="col4" >Due Date </th>
+             
+              </tr>
+          </thead>
+          <tbody md-body ng-show="vm.showinvoicelist && vm.showinvoicegrid " md-on-select="vm.toolBarProcess()" md-select="invoice" md-select-id="invoice.trans_id"
+          md-auto-select ng-disabled="invoice.status == 'declined'"
+          ng-repeat="item in vm.getallcustomerinvoice | filter:vm.InvoiceSearch | orderBy: vm.query.order"
+          style="cursor: pointer;" ng-click = "vm.getChat(item); vm.toggleSidenav('right-sidenav')">
+          <tr id="invoicelistitem" md-row>
+                  <td md-cell class="col2">{{item.Id}}</td>
+                  <td md-cell class="col2">{{item.CustomerRef.name}}</td>
+                  <td md-cell class="col2">${{item.Balance | number:2}}</td>
+                  <td md-cell class="col2">{{item.DueDate | date:'MM/dd/yyyy'}}</td>
+
+                </tbody>
+
+                <div layout="row" layout-align="center center" style="min-height:600px;" ng-show="!vm.showinvoicegrid">
+                        <div flex="30">
+                          <md-progress-linear id="toolbar-progress" class="md-hue-2"></md-progress-linear>
+                        </div>
+                      </div>
+
+                  <tr md-row ng-show="vm.getallcustomerinvoice.length <= 0">
+                          <td md-cell colspan="10" style="text-align:center !important;text-transform:none;font-size: 18px;
+                          padding-top: 20px;">There is no unpaid invoice(s) against selected customer</td>
+                        </tr>
+          </table>
+</md-list>
+
+</md-content>
+<!-- / CHATS LIST-->
+
+<!-- CONTACTS LIST-->
+<!-- <md-list class="contact-list">
+
+    <div ng-show="vm.chatSearch && filteredContact.length > 0" class="md-accent-fg subheader"
+         ng-style="{'transform': (filteredContact.length > 0 && filteredChat.length > 0 ) ? 'translate3d(0px, '+(filteredChat.length +1) * 100+'%, 0px)':'translate3d(0px, 0px, 0px)', 'z-index': filteredContact.length}"
+         translate="CHAT.CONTACTS">
+        CONTACTS
+    </div>
+
+    <md-list-item class="contact md-3-line"
+                  ng-show="vm.chatSearch"
+                  ng-style="{'transform': (filteredContact.length > 0 && filteredChat.length > 0 ) ?'translate3d(0px, '+(filteredChat.length + $index +2)* 100+'%, 0px)': 'translate3d(0px, '+ ($index + 1)* 100+'%, 0px)', 'z-index': filteredContact.length - $index}"
+                  ng-repeat="contact in vm.chatsmessage  "
+                  ng-click="vm.getChat(contact.id)">
+
+        <div class="avatar-wrapper">
+            <img ng-src="{{contact.avatar}}" class="md-avatar avatar" alt="{{contact.name}}"/>
+            <i class="icon icon- s16 status" ng-class="contact.status"></i>
+        </div>
+
+        <div class="md-list-item-text">
+            <h3>{{contact.DisplayName}}</h3>
+            <p class="mood">{{contact.Balance}}</p>
+        </div>
+
+         <md-divider></md-divider>
+
+    </md-list-item> 
+ </md-list>  -->
+
+
+
+<!-- / CONTACTS LIST-->
+
+<!-- NO RESULTS MESSAGE -->
+
+<!-- NO RESULTS MESSAGE-->
+
+
+<!-- / CHATS CONTENT -->
+
+<!-- CONTACTS BUTTON -->
+</md-content>

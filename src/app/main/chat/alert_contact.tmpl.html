@@ -1,0 +1,20 @@
+
+<md-dialog aria-label="Refund Transaction" ng-hide="hideDialogActions==true" >
+<md-progress-linear md-mode="indeterminate" ng-show="showProgress"></md-progress-linear>
+  <form name="refundForm" style="width: 450px;">
+    
+    <md-dialog-content class="md-padding">
+      
+      <!-- <h2>Please enter contact number</h2> -->
+      <div class="md-dialog-content">
+        <h2>Please enter contact number</h2>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" >
+      <md-button  ng-click="vm.closedialog(); callUpdateContact();" class="md-primary md-raised">
+         <!--<md-icon md-font-icon="fa fa-check"></md-icon></md-icon>-->Ok
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

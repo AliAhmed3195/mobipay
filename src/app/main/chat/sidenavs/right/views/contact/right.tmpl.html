@@ -1,0 +1,103 @@
+<!-- CONTACT TOOLBAR -->
+
+
+<style>
+    
+</style>
+<md-toolbar class="md-tall md-accent">
+
+    <!-- TOOLBAR TOP -->
+    <div class="md-toolbar-tools md-toolbar-tools-top">
+
+        <div translate="">Invoice Listing</div>
+
+        <!-- <div flex></div> -->
+
+
+
+
+
+        <md-button class="md-icon-button" ng-click="vm.toggleSidenav('right-sidenav')" aria-label="back">
+            <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+
+    </div>
+
+    <!-- <div class="datepickerinvoice" flex="15"    >
+            <!-- <md-input-container   style="right: 283px" md-open-on-focus="true" > -->
+                <!-- <label >Invoice Date</label> -->
+                <!-- <md-datepicker ng-model="InvoiceCreateController.invoice.TxnDate "    md-placeholder="Invoice Date"
+                   ng-change=" setsDate(); setTerm(); "  ></md-datepicker> -->
+             <!-- </md-input-container> -->
+        <!-- </div> --> 
+
+    <!-- <div class="datepickerduedate" flex="15"  >
+            <!-- <md-input-container style="right: 260px"> -->
+                <!-- <label >Due Date</label> -->
+                <!-- <md-datepicker ng-model="InvoiceCreateController.invoice.DueDate"  md-placeholder="Due Date" aria-label="DueDate">
+                </md-datepicker> -->
+            <!-- </md-input-container> -->
+        <!-- </div> --> 
+    <div class="simple-table-container md-whiteframe-4dp">
+            <!-- <md-progress-linear md-mode="indeterminate" ng-show="showProgressbar" style="margin-top: -5px;">
+            </md-progress-linear> -->
+      
+            <table md-table class="md-data-table" ng-model="transSelection"   ms-responsive-table>
+              <thead md-head md-order="vm.query.order" md-on-reorder="vm.InvoiceData"> 
+                
+                   <tr>
+                     
+                 
+                    <th  md-column md-order-by="trans_timestamp"  class="col5" style="width:90px;">Invoice #</th>
+                    <th  md-column md-order-by="trans_amount" >Balance</th>
+                    <th  md-column md-order-by="trans_amount" >Due Date </th>
+                    <!-- <th  md-column md-order-by="remain_amount">REMAINING</th> -->
+                </tr>
+            </thead>
+            <tbody md-body  md-on-select="vm.toolBarProcess()" md-select="invoice" md-select-id="invoice.trans_id"
+            md-auto-select ng-disabled="invoice.status == 'declined'"
+            ng-repeat="item in vm.getallcustomerinvoice "
+            style="cursor: pointer;">
+            <tr md-row>
+                    <td md-cell class="col2">{{item.Id}}</td>
+                    <td md-cell class="col2">${{item.Balance | number:2}}</td>
+                    <td md-cell class="col2">{{item.DueDate}}</td>
+
+                    </tbody>
+
+
+
+                    <tr md-row ng-show="vm.getallcustomerinvoice.length <= 0">
+                            <td md-cell colspan="10" style="text-align:center !important;text-transform:none;font-size: 18px;
+                            padding-top: 20px;">There is no data to
+                              display</td>
+                          </tr>
+            </table>
+</div>
+
+
+
+
+
+
+
+    <!-- / TOOLBAR TOP -->
+
+    <!-- TOOLBAR BOTTOM -->
+    <div class="md-toolbar-tools md-toolbar-tools-bottom" flex layout="column" layout-align="center center">
+
+        <div layout="column" layout-align="center center">
+
+     
+
+        </div>
+
+    </div>
+    <!-- / TOOLBAR BOTTOM -->
+
+</md-toolbar>
+<!-- / CONTACT TOOLBAR -->
+
+<!-- CONTACT CONTENT -->
+
+<!-- / CONTACT CONTENT -->

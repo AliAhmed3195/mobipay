@@ -1,0 +1,140 @@
+<!doctype html>
+<html ng-app="fuse">
+    <head>
+        <base href="/">
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="icon" type="image/png" href="https://apps.clique.center/apps/common/assets/images/favicon.png"> 
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <title>MobiPay</title>
+        <link id="favIcon" rel="icon" type="image/ico" href="">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css({.tmp/serve,src}) styles/app.css -->
+        <!-- inject:css -->
+        <!-- css files will be automatically insert here -->
+        <!-- endinject -->
+        <!-- endbuild -->
+
+        <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic'
+              rel='stylesheet' type='text/css'>
+    </head>
+
+    <!--[if lt IE 10]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
+          class="{{state.current.bodyClass || ''}}">
+
+        <!-- SPLASH SCREEN -->
+        <ms-splash-screen id="splash-screen">
+            <div class="center">
+                <div class="logo">
+                  <img src="https://apps.clique.center/apps/common/assets/images/clique_loading.gif">
+                  <div layout="row" layout-align="center center" style=" width: 600px; ">
+                        <md-progress-linear md-mode="indeterminate" ng-disabled="$root.loadingProgress"  class="md-hue-2" >
+                        </md-progress-linear>
+                        </div>
+
+
+                </div>
+               
+                
+                <!-- Material Design Spinner -->
+                <!-- <div class="spinner-wrapper">
+                    <div class="spinner">
+                        <div class="inner">
+                            <div class="gap"></div>
+                            <div class="left">
+                                    <img src="assets/images/clique_loading.gif"  />
+                            </div>
+                            <div class="right">
+                                    <!-- <img src="assets/images/clique_loading.gif"  />  -->
+                            <!-- </div>
+                        </div>
+                    </div>
+                </div> --> 
+                <!-- / Material Design Spinner -->
+            </div>
+        </ms-splash-screen>
+        <!-- / SPLASH SCREEN -->
+
+        <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
+
+
+
+ 
+
+        <ms-theme-options></ms-theme-options>
+
+        <!-- build:js(src) scripts/vendor.js -->
+        <!-- bower:js -->
+        <!-- run `gulp inject` to automatically populate bower script dependencies -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+        <!-- inject:js -->
+        <!-- js files will be automatically insert here -->
+        <!-- endinject -->
+
+        <!-- inject:partials -->
+        <!-- angular templates will be automatically converted in js and inserted here -->
+        <!-- endinject -->
+        <!-- endbuild -->
+
+
+
+
+       <!--  https://apps.clique.center/apps/common/assets/js/clique.js -->
+
+
+
+        <script type="text/javascript" src="assets/clique.js"></script>
+
+
+
+       
+
+        <!-- <script type="text/javascript" src="http://instantinvoice.local:8000/apps/common/assets/js/clique.js"></script> -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+      
+        <script src="bower_components/pdf.js-viewer/pdf.js"></script>
+        <link rel="stylesheet" href="bower_components/pdf.js-viewer/viewer.css">
+      
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-pdfjs-viewer/dist/angular-pdfjs-viewer.js"></script>
+        <script src="bower_components/ng-csv/build/ng-csv.js"></script>
+        <script src="bower_components/angular-avatar/dist/angular-avatar.js"></script>
+
+
+        <script>
+            localStorage.setItem("app_id","18");
+         localStorage.setItem("env","ip");
+          // localStorage.setItem("ip","https://staging.clique.center/");
+          // https://apps.clique.center/apps/account/login
+          // localStorage.setItem("ip","http://192.168.0.105:8000/");  // for Dev /
+         //  localStorage.setItem("token","9c4f7039d8fc5117e92905642fa7f144ac66363f"); // dev token
+    //      localStorage.setItem("ip","https://staging.clique.center/");  // for Prdouction 
+     //    localStorage.setItem("token","a1f31c8116b92631c5662fb4f89a6319735871c5"); // Production token
+         
+       localStorage.setItem("ip","https://staging.clique.center/");  // for Prdouction 
+        localStorage.setItem("token","a1f31c8116b92631c5662fb4f89a6319735871c5"); // Production token
+         //  document.cookie = "LOCALAUTH=973af70cb2c43b587da457954f68957a45e8af67";
+          //  document.cookie = "USERINFO=%7B%22name%22%3A%20%22Mark%20Smith%20%22%2C%20%22is_pwdchange%22%3A%20true%2C%20%22is_admin%22%3A%20true%2C%20%22id%22%3A%202%7D";
+         
+         </script> 
+         
+
+
+    </body>
+</html>

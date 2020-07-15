@@ -1,0 +1,40 @@
+
+<md-dialog aria-label="Refund Transaction" ng-hide="hideDialogActions==true" >
+<md-progress-linear md-mode="indeterminate" ng-show="showProgress"></md-progress-linear>
+  <form name="refundForm" style="width: 450px;">
+    
+    <md-dialog-content class="md-padding">
+      
+      <h2 ng-if="vm.shownum == true">Add Customer Contact Number</h2>
+      <h2 ng-show="vm.shownum == false">Update Customer Contact Number</h2>
+      <div class="md-dialog-content">
+         <md-input-container class="md-block bigClass">
+          <label for="refund_amount">Enter Contact Number </label>
+          <input id="refund_amount" label="refund_amount" name="refund_amount" type="text" ng-model="vm.customer_num"  required/>
+          <div ng-messages="refundForm.refund_amount.$error" md-auto-hide="false" ng-show="refundForm.refund_amount.$touched">
+              <div ng-message="required">
+                  Please enter contact number.
+              </div>
+              <!-- <div ng-message="min">
+                  Refund amount should be greater than 0
+              </div>
+              <div ng-message="max">
+                  Refund amount should not be greater than <span>{{transData.remain_amount | currency}}</span>
+              </div> -->
+
+              
+          </div>
+      </md-input-container>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" >
+            <!-- ng-disabled="vm.customer_num == undefined || vm.customer_num == ' ' " -->
+      <md-button ng-disabled="vm.customer_num == undefined || vm.customer_num == ' ' " ng-click="confirm(vm.customer_num)" class="md-primary md-raised">
+         <!--<md-icon md-font-icon="fa fa-check"></md-icon></md-icon>-->Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+
